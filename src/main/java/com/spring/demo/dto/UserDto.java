@@ -1,38 +1,15 @@
-package com.spring.demo.entity;
-
-import javax.persistence.*;
+package com.spring.demo.dto;
 
 /**
- * @created: 02/01/2024 - 7:17 PM
+ * @created: 04/01/2024 - 8:45 PM
  * @author: dungna
  */
-@Entity
-@Table(name = "user")
-public class User {
-
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "name")
+public class UserDto {
     private String name;
-
-    @Column(name = "address")
     private String address;
-
-    @Column(name = "age")
     private Long age;
 
-    public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public UserDto() {
     }
 
     public String getName() {
