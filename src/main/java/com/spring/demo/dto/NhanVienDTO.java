@@ -16,6 +16,8 @@ public class NhanVienDTO {
 
     private String chucVu;
 
+    private String nguoiTao;
+
     public NhanVienDTO() {
     }
 
@@ -57,5 +59,13 @@ public class NhanVienDTO {
 
     public void setChucVu(String chucVu) {
         this.chucVu = chucVu;
+    }
+
+    public String getNguoiTao() {
+        return nguoiTao;
+    }
+
+    public void setNguoiTao(String nguoiTao) {
+        this.nguoiTao = nguoiTao;
     }
 }
