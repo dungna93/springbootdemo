@@ -54,15 +54,17 @@ public class NhanVienService {
 
     public NhanVienDTO getInfoNhanVien(Integer id) {
         NhanVienDTO result = new NhanVienDTO();
-        NhanVien entity = new NhanVien();
 
-        entity = nhanVienRepository.getById(id);
-        if (entity.getId() != null) {
-            result.setTen(entity.getTen());
-            result.setChucVu(entity.getChucVu());
-            result.setTuoi(entity.getTuoi());
-            result.setDiaChi(entity.getDiaChi());
-            result.setMucLuong(entity.getMucLuong());
+        Optional<NhanVien> entity = nhanVienRepository.findById(id);
+
+        if (entity.isPresent()) {
+            NhanVien nhanVien = entity.get();
+            result.setTen(nhanVien.getTen());
+            result.setChucVu(nhanVien.getChucVu());
+            result.setTuoi(nhanVien.getTuoi());
+            result.setDiaChi(nhanVien.getDiaChi());
+            result.setMucLuong(nhanVien.getMucLuong());
+
         }
 
         return result;
