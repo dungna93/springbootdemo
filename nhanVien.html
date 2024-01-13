@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách nhân viên</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Danh sách nhân viên</h1>
+    <table class="table">
+        <thead>
+        <tr>
+           
+            <th>Name</th>
+			<th>Age</th>
+            <th>Address</th>
+			<th>Salary</th>
+			<th>Position</th>
+        </tr>
+        </thead>
+        <tbody id="nhanVien"></tbody>
+    </table>
+</div>
+
+<script>
+    // Function to fetch user from the backend API
+    function fetchProducts() {
+        fetch('http://localhost:8080/springbootdemo/nhan-vien/get-all-nhan-vien', {mode: 'no-cors'})
+            .then(response => {
+				console.log('Raw Response:', response);
+				return response.json()
+			})
+            .then(products => displayProducts(products))
+            .catch(error => console.error('Error fetching products:', error));
+    }
+
+    // Function to display products in the table
+    function displayProducts(products) {
+        const tableBody = document.getElementById('nhanVien');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        products.forEach(user => {
+            const row = `<tr>
+                            <td>${user.ten}</td>
+                            <td>${user.tuoi}</td>
+							<td>${user.diaChi}</td>
+							<td>${user.mucLuong}</td>
+							<td>${user.chucVu}</td>
+                        </tr>`;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    // Call fetchProducts when the page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchProducts();
+    });
+</script>
+
+</body>
+</html>

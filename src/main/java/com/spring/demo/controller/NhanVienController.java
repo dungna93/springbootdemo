@@ -3,6 +3,8 @@ package com.spring.demo.controller;
 import com.spring.demo.dto.NhanVienDTO;
 import com.spring.demo.service.NhanVienService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,10 +22,10 @@ public class NhanVienController {
     private NhanVienService nhanVienService;
 
     @GetMapping("/get-all-nhan-vien")
-    public List<NhanVienDTO> getNhanVien() {
+    public ResponseEntity<List<NhanVienDTO>> getNhanVien() {
         List<NhanVienDTO> kq = new ArrayList<>();
         kq = nhanVienService.getAllNhanVien();
-        return kq;
+        return new ResponseEntity<>(kq, HttpStatus.OK);
     }
 
     // Done CREATE
@@ -50,6 +52,11 @@ public class NhanVienController {
     public String deleteNhanVien(@RequestParam Integer id) {
         String result = nhanVienService.deleteNhanVien(id);
         return result;
+    }
+
+    @GetMapping("/get-thong-tin")
+    public String getThongTin() {
+        return "kjdhfkdsf";
     }
 
 }
